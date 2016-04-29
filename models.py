@@ -12,3 +12,12 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# ==============================================================================
+#                                                                           USER
+# ==============================================================================
+class User(models.Model):
+    first_name = models.CharField(max_length=40)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=150)

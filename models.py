@@ -44,3 +44,5 @@ class User(models.Model):
     last_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=150, blank=True, null=False)
 
+    def get_full_name(self):
+        return self.first_name + " " + self.last_name

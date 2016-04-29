@@ -1,6 +1,7 @@
 from django.db import models
 import numpy as np
 
+
 # ==============================================================================
 #                                                                           ITEM
 # ==============================================================================
@@ -34,10 +35,10 @@ class User(models.Model):
         return self.first_name + " " + self.last_name
 
     def __unicode__(self):
-        return self.get_full_name()
+        return self.full_name()
 
     def __str__(self):
-        return self.get_full_name()
+        return self.full_name()
 
 
 # ==============================================================================

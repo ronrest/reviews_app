@@ -1,5 +1,5 @@
 from django.db import models
-
+import numpy as np
 
 # ==============================================================================
 #                                                                           ITEM
@@ -12,6 +12,14 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+    def average_rating(self):
+        # Get a list of all the Review objects that reference this item, and
+        # extract the rating value given
+        all_ratings = map(lambda x: x.rating, self.review_set.all())
+
+        # Return the average value of those ratings
+        return np.mean(all_ratings)
 
 
 # ==============================================================================

@@ -63,9 +63,15 @@ class Review(models.Model):
                                     verbose_name="date published")
 
 
+    # ==========================================================================
+    #                                                                  __STR__()
+    # ==========================================================================
     def __str__(self):
         return str(self.rating) + " (" + self.author.full_name() + ") " + self.item.name
 
+    # ==========================================================================
+    #                                                              __UNICODE__()
+    # ==========================================================================
     def __unicode__(self):
         return str(self.rating) + " (" + self.author.full_name() + ") " + self.item.name
 

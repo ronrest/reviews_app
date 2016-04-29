@@ -62,6 +62,19 @@ class Review(models.Model):
                                     auto_now_add=False,
                                     verbose_name="date published")
 
+    # ==========================================================================
+    #                                                         CONDENSED_REVIEW()
+    # ==========================================================================
+    def condensed_review(self, max_len=40):
+        """
+        Return a condensed version of the review so that it does not exceed some
+        specified length. Includes ellipses to indicate that the text continues
+        if it is longer than the max length.
+        """
+        if len(self.review) > max_len:
+            return self.review[:max_len-3] + "..."
+        else:
+            return self.review[:max_len]
 
     # ==========================================================================
     #                                                                  __STR__()

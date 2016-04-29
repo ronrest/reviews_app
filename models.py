@@ -23,6 +23,24 @@ class Item(models.Model):
 
 
 # ==============================================================================
+#                                                                           USER
+# ==============================================================================
+class User(models.Model):
+    first_name = models.CharField(max_length=40)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=150, blank=True, null=False)
+
+    def full_name(self):
+        return self.first_name + " " + self.last_name
+
+    def __unicode__(self):
+        return self.get_full_name()
+
+    def __str__(self):
+        return self.get_full_name()
+
+
+# ==============================================================================
 #                                                                         REVIEW
 # ==============================================================================
 class Review(models.Model):
@@ -44,19 +62,3 @@ class Review(models.Model):
                                     verbose_name="date published")
 
 
-# ==============================================================================
-#                                                                           USER
-# ==============================================================================
-class User(models.Model):
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=150, blank=True, null=False)
-
-    def full_name(self):
-        return self.first_name + " " + self.last_name
-
-    def __unicode__(self):
-        return self.get_full_name()
-
-    def __str__(self):
-        return self.get_full_name()

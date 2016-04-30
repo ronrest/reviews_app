@@ -40,7 +40,7 @@ class Item(models.Model):
         """
         Returns the number of reviews this item has received.
         """
-        return len(self.review_set.all())
+        return self.review_set.count()
 
 
 # ##############################################################################

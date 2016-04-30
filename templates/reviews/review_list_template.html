@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% load staticfiles%}
-    <link rel="stylesheet" href="{% static 'reviews/css/styles.css'%}" type="text/css">
-    <title>Reviews List</title>
-</head>
-<body>
-
+{% extends "reviews/base.html"%}
+{% block content %}
 {% for review in reviews %}
     <div class="preview_container">
         <div class="preview_content">
@@ -27,6 +19,4 @@
         </div>
     </div>
 {% endfor %}
-
-</body>
-</html>
+{% endblock %}

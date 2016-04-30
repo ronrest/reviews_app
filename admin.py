@@ -27,12 +27,35 @@ class ReviewAdmin(admin.ModelAdmin):
 
     Also has filtering and search features.
     """
-    list_display = ('item', 'rating', "author","condensed_review", 'time_condensed')
+    # --------------------------------------------------------------------------
+    #                                            Specify a custom Formatted Date
+    # --------------------------------------------------------------------------
+    def pretty_date(self, obj):
+        return obj.pub_date.strftime("%Y_%m_%d %H:%M")
+
+    # Specify the underlying Model field (Required if we want to order using
+    # this column )
+    pretty_date.admin_order_field = 'pub_date'
+
+    # Give it a friendly name to display in the column
+    pretty_date.short_description = 'Published'
+
+
+    # --------------------------------------------------------------------------
+    #                                                       NOW ORGANISE COLUMNS
+    # --------------------------------------------------------------------------
+    # Columns to display
+    list_display = ('item', 'rating', "author","condensed_review", 'pretty_date')
+
+    # Filtering widget
     list_filter = ("pub_date", "rating")
+
+    # Search bar to filter for values in the following fields
     search_fields = ("item__name",)
 
-    def time_condensed(self, obj):
-        return obj.pub_date.strftime("%Y_%m_%d %H:%M")
+    # Ordering of rows using these columns (pubdate order the pretty_date colum)
+    ordering = ("-pub_date", "-rating", "item")
+
 
 
 # ==============================================================================
@@ -41,4 +64,5 @@ class ReviewAdmin(admin.ModelAdmin):
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Item)
+
 

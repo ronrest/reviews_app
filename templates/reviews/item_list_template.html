@@ -5,7 +5,7 @@
         <div class="item_content">
             <article class="typical_article">
                 <header class="item_header">
-                    <h3><a href="{{item.id}}">{{item.name}}</a></h3>
+                    <h3><a href="{% url 'reviews:single_item' item.id %}">{{item.name}}</a></h3>
                 </header>
                 <footer class="item_footer">
                     <p class="item_info">Number of reviews: {{item.num_reviews}}</p>
@@ -17,7 +17,7 @@
                         {% else %}
                         {{item.average_rating}}
                         {% endif %}
-                        </p>
+                    </p>
                 </content>
             </article>
         </div>

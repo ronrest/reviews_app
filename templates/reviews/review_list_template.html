@@ -6,9 +6,10 @@
             <article class="typical_article">
                 <header class="item_header">
                     <h3>{{review.rating}}</h3>
-                    <h3><a href="{{review.id}}">{{review.item.name}}</a></h3>
+                    <h3><a href="{% url 'reviews:single_review' review.id %}">{{review.item.name}}</a></h3>
                 </header>
                 <footer class="item_footer">
+                    <p class="item_info">{{review.author.full_name}}</p>
                     <p class="item_info">date: {{review.pub_date|date:"jS \o\f F Y"}}</p>
                 </footer>
                 <content>

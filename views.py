@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 
 from .models import Review, Item, User
 
@@ -26,3 +26,15 @@ def review_list(request):
                   template_name= template_sub_dir + "review_list_template.html",
                   context=context)
 
+
+# ==============================================================================
+#                                                                  SINGLE_REVIEW
+# ==============================================================================
+def single_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    context = {"review":review,
+               "page_title":"Review for " + review.item.name,
+               }
+    return render(request,
+                  template_name= template_sub_dir + "review_template.html",
+                  context=context)

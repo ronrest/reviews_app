@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews List</title>
+</head>
+<body>
+
+{% for review in reviews %}
+    <div class="review_preview_container">
+        <div class="review_preview_content">
+            <article class="typical_article">
+                <header class="review_preview_header">
+                    <h3><a href="{{review.id}}">{{review.item.name}}</a></h3>
+                    <h3>{{review.rating}}</h3>
+                </header>
+                <footer class="content_footer">
+                    <p class="post_info">date: {{review.pub_date|date:"jS \o\f F Y"}}</p>
+                </footer>
+                <content>
+                    <p>{{review.condensed_review|safe}}
+                    </p>
+                </content>
+            </article>
+        </div>
+    </div>
+{% endfor %}
+
+</body>
+</html>

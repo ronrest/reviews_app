@@ -38,3 +38,20 @@ def single_review(request, review_id):
     return render(request,
                   template_name= template_sub_dir + "review_template.html",
                   context=context)
+
+
+# ==============================================================================
+#                                                                      ITEM_LIST
+# ==============================================================================
+def item_list(request):
+    """
+    Show all items
+    """
+    items = Item.objects.order_by("name")
+    context = {"items":items,
+               "page_title":"List of Items",
+               }
+    return render(request,
+                  template_name= template_sub_dir + "item_list_template.html",
+                  context=context)
+

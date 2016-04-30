@@ -8,12 +8,21 @@ import numpy as np
 class Item(models.Model):
     name = models.CharField(max_length=200)
 
+    # ==========================================================================
+    #                                                                __UNICODE__
+    # ==========================================================================
     def __unicode__(self):
         return self.name
 
+    # ==========================================================================
+    #                                                                    __STR__
+    # ==========================================================================
     def __str__(self):
         return self.name
 
+    # ==========================================================================
+    #                                                             AVERAGE_RATING
+    # ==========================================================================
     def average_rating(self):
         # Get a list of all the Review objects that reference this item, and
         # extract the rating value given
@@ -25,6 +34,9 @@ class Item(models.Model):
         return np.mean(all_ratings)
         #return np.mean(all_ratings) if len(all_ratings) > 0 else None
 
+    # ==========================================================================
+    #                                                                NUM_REVIEWS
+    # ==========================================================================
     def num_reviews(self):
         """
         Returns the number of reviews this item has received.

@@ -25,6 +25,12 @@ class Item(models.Model):
         return np.mean(all_ratings)
         #return np.mean(all_ratings) if len(all_ratings) > 0 else None
 
+    def num_reviews(self):
+        """
+        Returns the number of reviews this item has received.
+        """
+        return len(self.review_set.all())
+
 
 # ##############################################################################
 #                                                                           USER

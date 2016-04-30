@@ -15,7 +15,10 @@ def index(request):
 #                                                                    REVIEW_LIST
 # ==============================================================================
 def review_list(request):
-    reviews = Review.objects.all()
+    """
+    Show the 9 latest reviews
+    """
+    reviews = Review.objects.order_by("-pub_date")[:9]
     context = {"reviews":reviews,
                "page_title":"Latest Reviews",
                }

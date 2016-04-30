@@ -6,10 +6,10 @@
             <header class="item_header">
                 <h3>{{review.item.name}}</h3>
                 <br><h3>Rating: {{review.rating}}</h3>
-
+                <br><h4>{{review.author.full_name}}</h4>
             </header>
             <footer class="content_footer">
-                <p class="item_info">date: {{review.pub_date|date:"jS \o\f F Y"}}</p>
+                <p class="item_info">{{review.pub_date|date:"jS \o\f F Y"}}</p>
             </footer>
             <content>
                 <p>{{review.review|safe}}

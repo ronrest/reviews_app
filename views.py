@@ -55,3 +55,12 @@ def item_list(request):
                   template_name= template_sub_dir + "item_list_template.html",
                   context=context)
 
+
+# ==============================================================================
+#                                                                    SINGLE_ITEM
+# ==============================================================================
+def single_item(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    return render(request, 'reviews/item_template.html', {'item': item})
+
+

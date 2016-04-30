@@ -1,0 +1,22 @@
+{% extends "reviews/base.html"%}
+{% block content %}
+<div class="item_container">
+    <div class="item_content">
+        <article class="typical_article">
+            <header class="item_header">
+                <h3>{{item.name}}</h3>
+            </header>
+            <footer class="content_footer">
+                <p class="item_info">Number of Reviews: {{item.num_reviews}}</p>
+            </footer>
+            <content>
+                {% if item.average_rating == None %}
+                <p>No ratings yet</p>
+                {% else %}
+                <p>Average Rating: {{item.average_rating}}</p>
+                {% endif %}
+            </content>
+        </article>
+    </div>
+</div>
+{% endblock %}

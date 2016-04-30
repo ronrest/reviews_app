@@ -31,8 +31,7 @@ class Item(models.Model):
         # Return the average value of those ratings
         # (return None if there are no reviews. None is used instead of np.nan
         # it is easier to check for None in Jinja templates )
-        return np.mean(all_ratings)
-        #return np.mean(all_ratings) if len(all_ratings) > 0 else None
+        return np.mean(all_ratings) if len(all_ratings) > 0 else None
 
     # ==========================================================================
     #                                                                NUM_REVIEWS

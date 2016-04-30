@@ -1,15 +1,15 @@
 {% extends "reviews/base.html"%}
 {% block content %}
-<div class="review_container">
-    <div class="review_content">
+<div class="item_container">
+    <div class="item_content">
         <article class="typical_article">
-            <header class="review_header">
+            <header class="item_header">
                 <h3>{{review.item.name}}</h3>
                 <br><h3>Rating: {{review.rating}}</h3>
 
             </header>
             <footer class="content_footer">
-                <p class="review_info">date: {{review.pub_date|date:"jS \o\f F Y"}}</p>
+                <p class="item_info">date: {{review.pub_date|date:"jS \o\f F Y"}}</p>
             </footer>
             <content>
                 <p>{{review.review|safe}}

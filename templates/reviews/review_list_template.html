@@ -1,15 +1,15 @@
 {% extends "reviews/base.html"%}
 {% block content %}
 {% for review in reviews %}
-    <div class="preview_container">
-        <div class="preview_content">
+    <div class="item_container">
+        <div class="item_content">
             <article class="typical_article">
-                <header class="preview_header">
+                <header class="item_header">
                     <h3>{{review.rating}}</h3>
                     <h3><a href="{{review.id}}">{{review.item.name}}</a></h3>
                 </header>
-                <footer class="content_footer">
-                    <p class="review_info">date: {{review.pub_date|date:"jS \o\f F Y"}}</p>
+                <footer class="item_footer">
+                    <p class="item_info">date: {{review.pub_date|date:"jS \o\f F Y"}}</p>
                 </footer>
                 <content>
                     <p>{{review.condensed_review|safe}}

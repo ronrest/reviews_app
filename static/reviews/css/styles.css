@@ -35,14 +35,14 @@ a:hover, a:active{
 /* ========================================================================== */
 /*                                                                    CONTENT */
 /* ========================================================================== */
-.preview_container, .review_container{
+.item_container{
     line-height: 20px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
 
-.preview_content, .review_content{
+.item_content{
     /*float: right;*/
     width: 68%;
     background-color: #f5f5f5;
@@ -53,13 +53,13 @@ a:hover, a:active{
     border-radius: 10px;
 }
 
-.review_info{
+.item_info{
     color: #999999;
     font-style: italic;
     font-size: 75%;
 }
 
-.preview_header h3, .review_header h3{
+.item_header h3{
     display: inline;
 }
 

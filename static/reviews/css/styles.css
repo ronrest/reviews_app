@@ -4,7 +4,7 @@
 /* ========================================================================== */
 body {
     color: #000909;
-    /*font-size: 90%;*/
+    /*font-size: 2em;*/
     font-family: Helvetica, Sans;
     /*line-height: 1.5;*/
     text-align: left;
@@ -12,7 +12,7 @@ body {
 
 .body{
     margin: 0 auto;
-    width: 75%;
+    /*width: 75%;*/
     clear:both;
 }
 
@@ -44,7 +44,7 @@ a:hover, a:active{
 
 .item_content{
     /*float: right;*/
-    width: 68%;
+    /*width: 68%;*/
     background-color: #f5f5f5;
     margin: 1% 0% 1% 0%;
     padding: 2% 2%;
@@ -64,4 +64,21 @@ a:hover, a:active{
     display: inline;
 }
 
+
+
+
+/* ========================================================================== */
+/*                                                      RESPONSIVE FONT SIZES */
+/* ========================================================================== */
+@media screen and (max-device-width: 720px) {
+   body { font-size: 2em; }
+}
+
+@media screen and (max-device-width: 480px) {
+   body { font-size: 3em; }
+}
+
+@media screen and (max-device-width: 360px) {
+   body { font-size: 4em; }
+}
 

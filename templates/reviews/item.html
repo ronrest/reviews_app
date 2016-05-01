@@ -33,7 +33,7 @@
 {% if form == "done" %}
     <h2>Your Review of this item</h2>
     {% with review=user_review %}
-        {% include "reviews/review_preview_snippet.html" %}
+        {% include "reviews/review_snippet.html" %}
     {% endwith %}
 {% else %}
     {% include "reviews/add_review_snippet.html" %}

@@ -19,4 +19,19 @@
         </article>
     </div>
 </div>
+
+{% if item.review_set.all %}
+<h2>Recent reviews for this item</h2>
+{% endif %}
+
+{% for review in reviews %}
+    {% include "reviews/review_preview_snippet.html" %}
+{% endfor %}
+
+{% if form == "done" %}
+    <h3>You have already reviewed this item</h3>
+{% else %}
+    {% include "reviews/add_review_snippet.html" %}
+{% endif %}
+
 {% endblock %}

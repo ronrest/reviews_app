@@ -68,7 +68,24 @@ def item_list(request):
 # ==============================================================================
 def single_item(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    return render(request, 'reviews/item_template.html', {'item': item})
+    author = get_object_or_404(User, pk=current_user)
+
+    # --------------------------------------------------------------------------
+    #                    Check if the user has already reviewed this item before
+    # --------------------------------------------------------------------------
+    if item.review_set.filter(author__pk=author.pk).count() > 0:
+        form = "done"
+    else:
+        form = ReviewForm()
+
+    # --------------------------------------------------------------------------
+    #                                                                Render Page
+    # --------------------------------------------------------------------------
+    context = {"item": item,
+               "reviews": item.review_set.all().order_by("-pub_date"),
+               "form": form}
+    return render(request, 'reviews/item_template.html', context=context)
+
 
 # ==============================================================================
 #                                                                     ADD_REVIEW

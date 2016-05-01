@@ -75,14 +75,17 @@ def single_item(request, item_id):
     # --------------------------------------------------------------------------
     if item.review_set.filter(author__pk=author.pk).count() > 0:
         form = "done"
+        user_review = item.review_set.filter(author__pk=1)[0]
     else:
         form = ReviewForm()
+        user_review = None
 
     # --------------------------------------------------------------------------
     #                                                                Render Page
     # --------------------------------------------------------------------------
     context = {"item": item,
                "reviews": item.review_set.all().order_by("-pub_date"),
+               "user_review": user_review,
                "form": form}
     return render(request, 'reviews/item_template.html', context=context)
 

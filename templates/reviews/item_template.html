@@ -31,7 +31,10 @@
 ================================================================================
 -->
 {% if form == "done" %}
-    <h3>You have already reviewed this item</h3>
+    <h2>Your Review of this item</h2>
+    {% with review=user_review %}
+        {% include "reviews/review_preview_snippet.html" %}
+    {% endwith %}
 {% else %}
     {% include "reviews/add_review_snippet.html" %}
 {% endif %}
@@ -42,11 +45,15 @@
 ================================================================================
 -->
 {% if reviews %}
-<h2>Recent reviews for this item</h2>
+<h2>What other people had to say about this item</h2>
 {% endif %}
 
 {% for review in reviews %}
-    {% include "reviews/review_preview_snippet.html" %}
+    {% if review == user_review %}
+        {# SKIP YOUR REVIEW #}
+    {% else %}
+        {% include "reviews/review_preview_snippet.html" %}
+    {% endif %}
 {% endfor %}
 
 

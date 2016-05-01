@@ -7,7 +7,26 @@
     <title>{{page_title}}</title>
 </head>
 <body>
-{% block content %}
-{% endblock %}
+
+<div>
+    <nav>
+        <div>
+            <a href="{% url 'reviews:review_list' %}">Reviews</a>
+        </div>
+        <div id="navbar">
+            <ul>
+                <li><a href="{% url 'reviews:item_list' %}">Item List</a></li>
+                <li><a href="{% url 'reviews:review_list' %}">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>{% block title %}(no title){% endblock %}</h1>
+
+
+    {% block content %}(no content){% endblock %}
+</div>
+
 </body>
 </html>
+

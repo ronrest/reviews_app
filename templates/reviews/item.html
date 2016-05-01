@@ -50,8 +50,7 @@
 
 <div class="row">
 {% for review in reviews %}
-    {% if review == user_review %}
-        {# SKIP YOUR REVIEW #}
+    {% if review == user_review %}{# SKIP YOUR REVIEW #}
     {% else %}
         <div class="col-xs-12 col-md-6 col-lg-4">
         {% with show_title=False show_user=True review_max_len=40 %}

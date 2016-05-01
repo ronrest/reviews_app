@@ -1,0 +1,15 @@
+{% block content %}
+    <div class="item_container">
+        <article class="item_content">
+            <header class="item_header">
+                <h3>{{review.rating}}</h3>
+                <h3><a href="{% url 'reviews:single_review' review.id %}">{{review.item.name}}</a></h3>
+            </header>
+            <footer class="item_footer">
+                <p class="item_info">{{review.author.full_name}}</p>
+                <time pubdate="pubdate">{{review.pub_date|date:"jS \o\f F Y"}}</time>
+            </footer>
+            <p>{{review.condensed_review|safe}}</p>
+        </article>
+    </div>
+{% endblock %}

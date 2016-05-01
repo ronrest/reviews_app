@@ -1,4 +1,5 @@
 {% extends "reviews/base.html"%}
+{% load bootstrap3 %}
 
 {% block title %}{{item.name}}{% endblock %}
 
@@ -47,13 +48,16 @@
 <h2>What other people had to say about this item</h2>
 {% endif %}
 
+<div class="row">
 {% for review in reviews %}
     {% if review == user_review %}
         {# SKIP YOUR REVIEW #}
     {% else %}
-        {% include "reviews/review_preview_snippet.html" %}
+        <div class="col-xs-12 col-md-6 col-lg-4">
+        {% include "reviews/review_preview_sans_title_snippet.html" %}
+        </div>
     {% endif %}
 {% endfor %}
-
+</div>
 
 {% endblock %}

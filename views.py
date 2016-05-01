@@ -13,10 +13,6 @@ static_sub_dir = "reviews/"   # Used for locating static files for this app
 
 current_user = 1        # TODO: User is hardcoded at the moment. Find a better way
 
-# Create your views here.
-def index(request):
-    return HttpResponse("hey hey hey!!!")
-
 
 # ==============================================================================
 #                                                                    REVIEW_LIST

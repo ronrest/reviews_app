@@ -3,17 +3,5 @@
 {% block title %}Review{% endblock %}
 
 {% block content %}
-<div class="item_container">
-    <article class="item_content">
-        <header class="item_header">
-            <h3>{{review.item.name}}</h3>
-            <br><h3>Rating: {{review.rating}}</h3>
-            <br><h4>{{review.author.full_name}}</h4>
-        </header>
-        <footer class="content_footer">
-            <time pubdate="pubdate">{{review.pub_date|date:"jS \o\f F Y"}}</time>
-        </footer>
-        <p>{{review.review|safe}}</p>
-    </article>
-</div>
+{% include "reviews/review_snippet.html" %}
 {% endblock %}

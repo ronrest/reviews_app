@@ -26,7 +26,7 @@ def review_list(request):
                "page_title":"Latest Reviews",
                }
     return render(request,
-                  template_name= template_sub_dir + "review_list_template.html",
+                  template_name= template_sub_dir + "review_list.html",
                   context=context)
 
 
@@ -39,7 +39,7 @@ def single_review(request, review_id):
                "page_title":"Review for " + review.item.name,
                }
     return render(request,
-                  template_name= template_sub_dir + "review_template.html",
+                  template_name= template_sub_dir + "review.html",
                   context=context)
 
 
@@ -55,7 +55,7 @@ def item_list(request):
                "page_title":"List of Items",
                }
     return render(request,
-                  template_name= template_sub_dir + "item_list_template.html",
+                  template_name= template_sub_dir + "item_list.html",
                   context=context)
 
 
@@ -83,7 +83,7 @@ def single_item(request, item_id):
                "reviews": item.review_set.all().order_by("-pub_date"),
                "user_review": user_review,
                "form": form}
-    return render(request, 'reviews/item_template.html', context=context)
+    return render(request, 'reviews/item.html', context=context)
 
 
 # ==============================================================================

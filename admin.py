@@ -2,6 +2,22 @@ from django.contrib import admin
 
 from .models import Review, User, Item
 
+
+# ==============================================================================
+#                                                                     ITEM ADMIN
+# ==============================================================================
+class ItemAdmin(admin.ModelAdmin):
+    """
+    Customise the admin page for the Item Model so it displays id and name.
+
+    Also has filtering and search features.
+    """
+    list_display = ('id', 'name')
+    list_filter = ("name",)
+    search_fields = ("name", "id")
+    ordering = ("name",)
+
+
 # ==============================================================================
 #                                                                     USER ADMIN
 # ==============================================================================
@@ -63,6 +79,6 @@ class ReviewAdmin(admin.ModelAdmin):
 # ==============================================================================
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(User, UserAdmin)
-admin.site.register(Item)
+admin.site.register(Item, ItemAdmin)
 
 

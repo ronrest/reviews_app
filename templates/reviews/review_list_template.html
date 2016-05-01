@@ -1,4 +1,9 @@
 {% extends "reviews/base.html"%}
+
+{% block title %}
+<h2>Latest Reviews</h2>
+{% endblock %}
+
 {% block content %}
 {% for review in reviews %}
     {% include "reviews/review_preview_snippet.html" %}

@@ -53,7 +53,7 @@ a:hover, a:active{
     border-radius: 10px;
 }
 
-.item_info{
+.item_info, time{
     color: #999999;
     font-style: italic;
     font-size: 75%;

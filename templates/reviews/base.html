@@ -2,19 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    {% load bootstrap3 %}
+    <!-- Bootstrap CSS and JS -->
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
     {% load staticfiles%}
+    <!-- My CSS Styles -->
     <link rel="stylesheet" href="{% static 'reviews/css/styles.css'%}" type="text/css">
     <title>{{page_title}}</title>
 </head>
 <body>
 
-<div>
-    <nav>
-        <div>
-            <a href="{% url 'reviews:review_list' %}">Reviews</a>
+{% block bootstrap3_content %}
+<div class="container">
+    <nav  class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'reviews:review_list' %}">Reviews</a>
         </div>
-        <div id="navbar">
-            <ul>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
                 <li><a href="{% url 'reviews:item_list' %}">Item List</a></li>
                 <li><a href="{% url 'reviews:review_list' %}">Home</a></li>
             </ul>
@@ -23,10 +31,11 @@
 
     <h1>{% block title %}(no title){% endblock %}</h1>
 
+    {% bootstrap_messages %}
 
     {% block content %}(no content){% endblock %}
 </div>
-
+{% endblock %}
 </body>
 </html>
 

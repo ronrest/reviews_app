@@ -8,6 +8,10 @@
     <footer class="content_footer">
         <time pubdate="pubdate">{{review.pub_date|date:"jS \o\f F Y"}}</time>
     </footer>
-    <p>{{review.review|safe}}</p>
+{% if review_max_len %}
+    <p>{{review.review|safe|truncatechars:review_max_len}}</p>
+    <h5><a href="{% url 'reviews:single_review' review.id %}">Read more</a></h5>
+    {% else %}<p>{{review.review|safe}}
+{% endif %}
 </article>
 {% endblock %}

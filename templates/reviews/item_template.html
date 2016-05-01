@@ -1,5 +1,10 @@
 {% extends "reviews/base.html"%}
 {% block content %}
+<!--
+================================================================================
+                                                                ITEM INFORMATION
+================================================================================
+-->
 <div class="item_container">
     <div class="item_content">
         <article class="typical_article">
@@ -20,6 +25,11 @@
     </div>
 </div>
 
+<!--
+================================================================================
+                                                           LIST PREVIOUS REVIEWS
+================================================================================
+-->
 {% if reviews %}
 <h2>Recent reviews for this item</h2>
 {% endif %}
@@ -28,6 +38,12 @@
     {% include "reviews/review_preview_snippet.html" %}
 {% endfor %}
 
+
+<!--
+================================================================================
+                                                            ADD/VIEW YOUR REVIEW
+================================================================================
+-->
 {% if form == "done" %}
     <h3>You have already reviewed this item</h3>
 {% else %}

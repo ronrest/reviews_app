@@ -122,7 +122,7 @@ def add_review(request, item_id):
 
             # Populate a database entry based on form data and other generated data
             review = Review(item=item,          # Got this from the url
-                            author=author,      # TODO: This is hardcoded at the moment
+                            author=author,      # Got this from the environment
                             rating=rating,      # Got this from the form
                             review=comment,     # Got this from the form
                             pub_date= datetime.datetime.now() # Auto generated

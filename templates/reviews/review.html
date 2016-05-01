@@ -3,7 +3,7 @@
 {% block title %}Review{% endblock %}
 
 {% block content %}
-{% with show_title=True show_user=True%}
+{% with show_title=True show_user=True review_max_len=False %}
         {% include "reviews/review_snippet.html" %}
     {% endwith %}
 {% endblock %}

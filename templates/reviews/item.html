@@ -32,7 +32,7 @@
 -->
 {% if form == "done" %}
     <h2>Your Review of this item</h2>
-    {% with review=user_review show_title=False show_user=False %}
+    {% with review=user_review show_title=False show_user=False review_max_len=False %}
         {% include "reviews/review_snippet.html" %}
     {% endwith %}
 {% else %}
@@ -54,7 +54,9 @@
         {# SKIP YOUR REVIEW #}
     {% else %}
         <div class="col-xs-12 col-md-6 col-lg-4">
-        {% include "reviews/review_preview_sans_title_snippet.html" %}
+        {% with show_title=False show_user=True review_max_len=40 %}
+        {% include "reviews/review_snippet.html" %}
+        {% endwith %}
         </div>
     {% endif %}
 {% endfor %}

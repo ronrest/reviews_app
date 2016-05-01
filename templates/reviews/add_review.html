@@ -1,0 +1,10 @@
+{% extends "reviews/base.html"%}
+{% block content %}
+{% if form == "done" %}
+    <h3>{{item.name}}</h3>
+    <p>You have already reviewed item</p>
+{% else %}
+    {% include "reviews/add_review_snippet.html" %}
+
+{% endif %}
+{% endblock %}

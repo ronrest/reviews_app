@@ -1,0 +1,10 @@
+{% block content %}
+    <h3>Add A review for {{item.name}}</h3>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'reviews:add_review' item.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add" />
+    </form>
+{% endblock %}

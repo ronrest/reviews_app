@@ -1,10 +1,17 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 from .models import Review, Item, User
+from .forms import ReviewForm
+
+import datetime
+
 
 template_sub_dir = "reviews/"   # Used for locating templates for this app
 static_sub_dir = "reviews/"   # Used for locating static files for this app
 
+current_user = 1        # TODO: User is hardcoded at the moment. Find a better way
 
 # Create your views here.
 def index(request):
@@ -63,4 +70,58 @@ def single_item(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     return render(request, 'reviews/item_template.html', {'item': item})
 
+# ==============================================================================
+#                                                                     ADD_REVIEW
+# ==============================================================================
+def add_review(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    author = get_object_or_404(User, pk=current_user)
+    # --------------------------------------------------------------------------
+    #                    Check if the user has already reviewed this item before
+    # --------------------------------------------------------------------------
+    if item.review_set.filter(author__pk=author.pk).count() > 0:
+        already_reviewed = True
+    else:
+        already_reviewed = False
+
+    # If person has already reviewed, then show a message that they have reviewed
+    # -  Maybe Populate the form with their existing values
+    # If not alredy reviewed, then show empty form.
+
+    if already_reviewed:
+        form = "done"
+        return render(request, template_sub_dir + 'add_review.html',{'item': item, 'form': form})
+
+    # --------------------------------------------------------------------------
+    #                    Check if the user has already reviewed this item before
+    # --------------------------------------------------------------------------
+    if (request.method == "POST"):
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            # Get the filled in data from the form
+            clean_data = form.cleaned_data
+            rating = clean_data['rating']
+            comment = clean_data['review']
+
+            # Populate a database entry based on form data and other generated data
+            review = Review(item=item,          # Got this from the url
+                            author=author,      # TODO: This is hardcoded at the moment
+                            rating=rating,      # Got this from the form
+                            review=comment,     # Got this from the form
+                            pub_date= datetime.datetime.now() # Auto generated
+                            )
+            review.save()
+            # Always return an HttpResponseRedirect after successfully dealing
+            # with POST data. This prevents data from being posted twice if a
+            # user hits the Back button.
+            # Reverse URL lookup
+            return HttpResponseRedirect(reverse('reviews:single_item', args=(item.id,)))
+        else:
+            pass # form is not valid. SImply dont process it.
+    else:
+        # No POST information has been sent, which means the user is coming in
+        # Fresh, so create a blank form.
+        form = ReviewForm()
+
+    return render(request, template_sub_dir + 'add_review.html', {'item': item, 'form': form})
 

@@ -6,23 +6,19 @@
 ================================================================================
 -->
 <div class="item_container">
-    <div class="item_content">
-        <article class="typical_article">
-            <header class="item_header">
-                <h3>{{item.name}}</h3>
-            </header>
-            <footer class="content_footer">
-                <p class="item_info">Number of Reviews: {{item.num_reviews}}</p>
-            </footer>
-            <content>
-                {% if item.average_rating == None %}
-                <p>No ratings yet</p>
-                {% else %}
-                <p>Average Rating: {{item.average_rating | floatformat:2 }}</p>
-                {% endif %}
-            </content>
-        </article>
-    </div>
+    <article class="item_content">
+        <header class="item_header">
+            <h3>{{item.name}}</h3>
+        </header>
+        <footer class="item_footer">
+            <p class="item_info">Number of Reviews: {{item.num_reviews}}</p>
+        </footer>
+        {% if item.average_rating == None %}
+        <p>No ratings yet</p>
+        {% else %}
+        <p>Average Rating: {{item.average_rating | floatformat:2 }}</p>
+        {% endif %}
+    </article>
 </div>
 
 <!--

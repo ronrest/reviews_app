@@ -28,7 +28,7 @@ class UserAdmin(admin.ModelAdmin):
 
     Also has filtering and search features.
     """
-    list_display = ('first_name', 'last_name', 'email')
+    list_display = ('id', 'first_name', 'last_name', 'email')
     list_filter = ("last_name",)
     search_fields = ("last_name", "first_name")
 

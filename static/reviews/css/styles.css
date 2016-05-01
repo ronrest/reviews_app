@@ -4,9 +4,9 @@
 /* ========================================================================== */
 body {
     color: #000909;
-    font-size: 90%;
+    /*font-size: 90%;*/
     font-family: Helvetica, Sans;
-    line-height: 1.5;
+    /*line-height: 1.5;*/
     text-align: left;
 }
 
@@ -36,7 +36,7 @@ a:hover, a:active{
 /*                                                                    CONTENT */
 /* ========================================================================== */
 .item_container{
-    line-height: 20px;
+    /*line-height: 20px;*/
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -56,7 +56,8 @@ a:hover, a:active{
 .item_info, time{
     color: #999999;
     font-style: italic;
-    font-size: 75%;
+    font-size: 85%;
+    margin-bottom: 0px;
 }
 
 .item_header h3{

@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.shortcuts import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Review, Item #, User
 from .forms import ReviewForm
@@ -89,6 +90,7 @@ def single_item(request, item_id):
 # ==============================================================================
 #                                                                     ADD_REVIEW
 # ==============================================================================
+@login_required
 def add_review(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     author = request.user.username

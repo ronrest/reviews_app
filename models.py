@@ -47,19 +47,19 @@ class Item(models.Model):
 # ##############################################################################
 #                                                                           USER
 # ##############################################################################
-class User(models.Model):
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=150, blank=True, null=False)
-
-    def full_name(self):
-        return self.first_name + " " + self.last_name
-
-    def __unicode__(self):
-        return self.full_name()
-
-    def __str__(self):
-        return self.full_name()
+# class User(models.Model):
+#     first_name = models.CharField(max_length=40)
+#     last_name = models.CharField(max_length=50)
+#     email = models.EmailField(max_length=150, blank=True, null=False)
+#
+#     def full_name(self):
+#         return self.first_name + " " + self.last_name
+#
+#     def __unicode__(self):
+#         return self.full_name()
+#
+#     def __str__(self):
+#         return self.full_name()
 
 
 # ##############################################################################
@@ -76,7 +76,8 @@ class Review(models.Model):
     )
 
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.CharField(max_length=100)
     rating = models.IntegerField(choices=RATING_CHOICES)
     review = models.TextField(max_length=250)
     pub_date = models.DateTimeField(auto_now=False,
@@ -99,11 +100,11 @@ class Review(models.Model):
     #                                                                  __STR__()
     # ==========================================================================
     def __str__(self):
-        return str(self.rating) + " (" + self.author.full_name() + ") " + self.item.name
+        return str(self.rating) + " (" + self.author + ") " + self.item.name
 
     # ==========================================================================
     #                                                              __UNICODE__()
     # ==========================================================================
     def __unicode__(self):
-        return str(self.rating) + " (" + self.author.full_name() + ") " + self.item.name
+        return str(self.rating) + " (" + self.author + ") " + self.item.name
 

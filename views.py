@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.shortcuts import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from .models import Review, Item, User
+from .models import Review, Item #, User
 from .forms import ReviewForm
 
 import datetime
@@ -11,7 +11,7 @@ import datetime
 template_sub_dir = "reviews/"   # Used for locating templates for this app
 static_sub_dir = "reviews/"   # Used for locating static files for this app
 
-current_user = 1        # TODO: User is hardcoded at the moment. Find a better way
+#current_user = 1        # TODO: User is hardcoded at the moment. Find a better way
 
 
 # ==============================================================================
@@ -64,14 +64,14 @@ def item_list(request):
 # ==============================================================================
 def single_item(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    author = get_object_or_404(User, pk=current_user)
+    author = request.user.username
 
     # --------------------------------------------------------------------------
     #                    Check if the user has already reviewed this item before
     # --------------------------------------------------------------------------
-    if item.review_set.filter(author__pk=author.pk).count() > 0:
+    if item.review_set.filter(author=author).count() > 0:
         form = "done"
-        user_review = item.review_set.filter(author__pk=1)[0]
+        user_review = item.review_set.filter(author=author)[0]
     else:
         form = ReviewForm()
         user_review = None
@@ -91,11 +91,11 @@ def single_item(request, item_id):
 # ==============================================================================
 def add_review(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    author = get_object_or_404(User, pk=current_user)
+    author = request.user.username
     # --------------------------------------------------------------------------
     #                    Check if the user has already reviewed this item before
     # --------------------------------------------------------------------------
-    if item.review_set.filter(author__pk=author.pk).count() > 0:
+    if item.review_set.filter(author=author).count() > 0:
         already_reviewed = True
     else:
         already_reviewed = False

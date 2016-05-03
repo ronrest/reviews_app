@@ -10,6 +10,8 @@
 <form action="{% url 'reviews:login' %}" method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form layout='inline' %}
+    <!--Specify landing page after login -->
+    <input type="hidden" name="next" value="/user" />
     {% buttons %}
     <button type="submit" class="btn btn-primary">
       {% bootstrap_icon "user" %} Login

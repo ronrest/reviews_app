@@ -3,7 +3,7 @@
     <header class="item_header">
         {% if show_title %}<h3>{{review.item.name}}</h3><br>{% endif %}
         <h3>Rating: {{review.rating}}</h3>
-        {% if show_user %}<br><h4>{{review.author}}</h4>{% endif %}
+        {% if show_user %}<br><h4><a href="{% url 'reviews:user_review_list' review.author %}">{{review.author}}</a></h4>{% endif %}
     </header>
     <footer class="content_footer">
         <time pubdate="pubdate">{{review.pub_date|date:"jS \o\f F Y"}}</time>

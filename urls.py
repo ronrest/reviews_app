@@ -12,4 +12,14 @@ urlpatterns = [
 
     url(r'^user/(?P<username>\w+)/$', views.user_review_list, name='user_review_list'),
     url(r'^user/$', views.user_review_list, name='user_review_list'),
+
+    # User Authentication Pages
+    url(r'^accounts/logout/$',
+        'django.contrib.auth.views.logout',
+        {'template_name': 'registration/logout.html'},
+        name="logout"),
+    url(r'^accounts/login/$',
+        'django.contrib.auth.views.login',
+        {"template_name": "registration/login.html"},
+        name="login"),
 ]

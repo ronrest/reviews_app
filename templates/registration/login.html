@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<form action="{% url 'auth:login' %}" method="post" class="form">
+<form action="{% url 'reviews:login' %}" method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form layout='inline' %}
     {% buttons %}

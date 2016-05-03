@@ -1,0 +1,18 @@
+{% extends "reviews/base.html"%}
+{% load bootstrap3 %}
+
+{% block title %}
+<h2>Reviews by {{username}}</h2>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+{% for review in reviews %}
+    <div class="col-xs-12 col-md-6 col-lg-4">
+    {% with show_title=True show_user=False review_max_len=40 %}
+    {% include "reviews/review_snippet.html" %}
+    {% endwith %}
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

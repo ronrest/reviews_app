@@ -9,4 +9,7 @@ urlpatterns = [
     url(r'^item/(?P<item_id>[0-9]+)/$', views.single_item, name="single_item"),
 
     url(r'^add_review/(?P<item_id>[0-9]+)/$', views.add_review, name="add_review"),
+
+    url(r'^user/(?P<username>\w+)/$', views.user_review_list, name='user_review_list'),
+    url(r'^user/$', views.user_review_list, name='user_review_list'),
 ]

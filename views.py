@@ -31,6 +31,27 @@ def review_list(request):
                   context=context)
 
 
+
+# ==============================================================================
+#                                                                    REVIEW_LIST
+# ==============================================================================
+def user_review_list(request, username=None):
+    """
+    Show the reviews by the user
+    """
+    if username is None:
+        username = request.user.username  # get_object_or_404(User, pk=current_user)
+
+    reviews = Review.objects.filter(author=username).order_by("-pub_date")
+    context = {"reviews":reviews,
+               "page_title":"Your Reviews",
+               "username":username}
+    return render(request,
+                  template_name= template_sub_dir + "user_review_list.html",
+                  context=context)
+
+
+
 # ==============================================================================
 #                                                                  SINGLE_REVIEW
 # ==============================================================================

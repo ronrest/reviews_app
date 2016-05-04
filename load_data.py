@@ -84,6 +84,9 @@ if __name__ == "__main__":
                 raise ValueError(
                     "The data in file does not match the expected columns for users")
         else:
+            # ------------------------------------------------------------------
+            #                                            Handle Incorrect Option
+            # ------------------------------------------------------------------
             raise ValueError("Incorrect Option. Legal options are 'reviews', 'items' or 'users'")
 
         # ----------------------------------------------------------------------

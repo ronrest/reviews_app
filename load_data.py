@@ -43,8 +43,11 @@ def extract_user_from_row(user_row):
 # ==============================================================================
 #                                                          EXTRACT_ITEM_FROM_ROW
 # ==============================================================================
-def extract_item_from_row(user_row):
-    pass
+def extract_item_from_row(item_row):
+    item = Item(name=item_row["name"],
+                id= item_row["id"]
+                )
+    item.save()
 
 
 # the main function for the script, called by the shell
@@ -126,3 +129,4 @@ if __name__ == "__main__":
             the option selected.
         """
         raise ValueError(message)
+

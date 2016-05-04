@@ -1,0 +1,32 @@
+{% extends "reviews/base.html"%}
+
+{% block title %}
+<h2>Recommended Items</h2>
+{% endblock %}
+
+
+{% block content %}
+{% for item in items %}
+    <div class="item_container">
+        <div class="item_content">
+            <article class="typical_article">
+                <header class="item_header">
+                    <h3><a href="{% url 'reviews:single_item' item.id %}">{{item.name}}</a></h3>
+                </header>
+                <footer class="item_footer">
+                    <p class="item_info">Number of reviews: {{item.num_reviews}}</p>
+                </footer>
+                <content>
+                    <p>Average Rating:
+                        {% if item.average_rating == None %}
+                        -
+                        {% else %}
+                        {{item.average_rating}}
+                        {% endif %}
+                    </p>
+                </content>
+            </article>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

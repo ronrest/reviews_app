@@ -13,6 +13,8 @@ urlpatterns = [
 
     url(r'^user/(?P<username>\w+)/$', views.user_review_list, name='user_review_list'),
     url(r'^user/$', views.user_review_list, name='user_review_list'),
+    url(r'^suggestions/$', views.user_recommendation_list, name="recommendations"),
+
 
     # User Authentication Pages
     url(r'^accounts/logout/$',

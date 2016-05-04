@@ -52,6 +52,25 @@ def user_review_list(request, username=None):
 
 
 # ==============================================================================
+#                                                       USER_RECOMMENDATION_LIST
+# ==============================================================================
+@login_required
+def user_recommendation_list(request):
+    """
+    Show recomendations to the user
+    Currently just shows the user a list of All the items.
+    """
+    items = Item.objects.order_by("name")
+    context = {"items":items,
+               "page_title":"List of Items",
+               }
+    return render(request,
+                  template_name= template_sub_dir + "recommendations.html",
+                  context=context)
+
+
+
+# ==============================================================================
 #                                                                  SINGLE_REVIEW
 # ==============================================================================
 def single_review(request, review_id):

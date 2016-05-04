@@ -29,6 +29,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'reviews:user_review_list' user.username %}">Hello {{user.username}} </a></li>
+                <li><a href="{% url 'reviews:recommendations' %}">Recommendations</a></li>
                 <li><a href="{% url 'reviews:logout' %}">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'reviews:login' %}">Login</a></li>

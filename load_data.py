@@ -60,13 +60,29 @@ if __name__ == "__main__":
         # ----------------------------------------------------------------------
         #    Determine the relevant processing function based on option selected
         # ----------------------------------------------------------------------
+        # -------------------------------------------------------------- Reviews
         if option in ["review", "reviews"]:
             necessary_columns = {"id","username","item_id","rating","comment"}
-            processing_function = extract_review_from_row
+            if necessary_columns.issubset(data.columns):
+                processing_function = extract_review_from_row
+            else:
+                raise ValueError("The data in file does not match the expected columns for reviews")
+        # ---------------------------------------------------------------- Items
         elif option in ["items", "item"]:
-            processing_function = extract_item_from_row
+            necessary_columns = {"id", "name"}
+            if necessary_columns.issubset(data.columns):
+                processing_function = extract_item_from_row
+            else:
+                raise ValueError(
+                    "The data in file does not match the expected columns for items")
+        # ---------------------------------------------------------------- Users
         elif option in ["users", "user"]:
-            processing_function = extract_user_from_row
+            necessary_columns = {"id", "name"}
+            if necessary_columns.issubset(data.columns):
+                processing_function = extract_user_from_row
+            else:
+                raise ValueError(
+                    "The data in file does not match the expected columns for users")
         else:
             raise ValueError("Incorrect Option. Legal options are 'reviews', 'items' or 'users'")
 

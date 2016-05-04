@@ -62,6 +62,7 @@ if __name__ == "__main__":
         # ----------------------------------------------------------------------
         if option in ["review", "reviews"]:
             necessary_columns = {"id","username","item_id","rating","comment"}
+            processing_function = extract_review_from_row
         elif option in ["items", "item"]:
             processing_function = extract_item_from_row
         elif option in ["users", "user"]:

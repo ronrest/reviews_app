@@ -48,7 +48,15 @@ if __name__ == "__main__":
         # ----------------------------------------------------------------------
         #                                                 Get data from the file
         # ----------------------------------------------------------------------
-        data = pd.read_csv(file)
+        print("Reading file " + file)
+        try:
+            data = pd.read_csv(file)
+        except:
+            raise RuntimeError('Could not open the file "{}"\n'.format(file) \
+                               + 'please make sure it exists')
+
+        print(data.head(10))    # Print the first 10 rows of data
+
         # ----------------------------------------------------------------------
         #    Determine the relevant processing function based on option selected
         # ----------------------------------------------------------------------

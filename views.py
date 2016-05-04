@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.shortcuts import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from registration.backends.default.views import RegistrationView
 
 from .models import Review, Item #, User
 from .forms import ReviewForm
@@ -11,8 +12,6 @@ import datetime
 
 template_sub_dir = "reviews/"   # Used for locating templates for this app
 static_sub_dir = "reviews/"   # Used for locating static files for this app
-
-#current_user = 1        # TODO: User is hardcoded at the moment. Find a better way
 
 
 # ==============================================================================
@@ -164,3 +163,10 @@ def add_review(request, item_id):
 
     return render(request, template_sub_dir + 'add_review.html', {'item': item, 'form': form})
 
+
+# ==============================================================================
+#                                                                       REGISTER
+# ==============================================================================
+class register(RegistrationView):
+    template_name = "registration/registration_form.html"
+    success_url = "/"

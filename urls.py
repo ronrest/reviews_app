@@ -23,4 +23,10 @@ urlpatterns = [
         login,
         {"template_name": "registration/login.html"},
         name="login"),
+
+    # User registration
+    #url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/register/$',views.register.as_view(), name="register"),
+
+
 ]

@@ -34,7 +34,7 @@ def extract_review_from_row(review_row):
 # ==============================================================================
 def extract_user_from_row(user_row):
     user = User(username = user_row["name"],
-                # user.id = user_row["id"]  # id in this case should be handled automatically
+                # id = user_row["id"]  # id in this case should be handled automatically
                 password = make_password("password") # temporary password
                 )
     user.save()

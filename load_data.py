@@ -33,7 +33,12 @@ def extract_review_from_row(review_row):
 #                                                          EXTRACT_USER_FROM_ROW
 # ==============================================================================
 def extract_user_from_row(user_row):
-    pass
+    user = User(username = user_row["name"],
+                # user.id = user_row["id"]  # id in this case should be handled automatically
+                password = make_password("password") # temporary password
+                )
+    user.save()
+
 
 # ==============================================================================
 #                                                          EXTRACT_ITEM_FROM_ROW

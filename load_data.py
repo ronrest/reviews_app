@@ -19,7 +19,15 @@ from django.contrib.auth.hashers import make_password
 #                                                                 EXTRACT REVIEW
 # ==============================================================================
 def extract_review_from_row(review_row):
-    pass
+    review = Review(id = review_row["id"],
+                    author = review_row["username"],
+                    item = Item.objsect.get(id=review_row["item_id"]),
+                    rating = review_row["rating"],
+                    review = review_row["comment"],
+                    pub_date = datetime.datetime.now()
+                    )
+    review.save()
+
 
 # ==============================================================================
 #                                                          EXTRACT_USER_FROM_ROW

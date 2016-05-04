@@ -170,3 +170,9 @@ def add_review(request, item_id):
 class register(RegistrationView):
     template_name = "registration/registration_form.html"
     success_url = "/"
+    # TODO: BUG: Throws error after registration. Something to do with not
+    #            Finding the reverse lookup for registration_complete
+    #            But i still continue getting this error even if i add a
+    #            url field in the urls.py with that name. Find out if there is
+    #            a way around this.
+

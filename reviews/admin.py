@@ -28,6 +28,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
     Also has filtering and search features.
     """
+    # TODO: Try settin gup pretty date as a @property in the Model
     # --------------------------------------------------------------------------
     #                                            Specify a custom Formatted Date
     # --------------------------------------------------------------------------
@@ -46,6 +47,7 @@ class ReviewAdmin(admin.ModelAdmin):
     #                                                       NOW ORGANISE COLUMNS
     # --------------------------------------------------------------------------
     # Columns to display
+    # TODO: COnsider seting up condensed review as a @property in the Model
     list_display = ('item', 'rating', "author","condensed_review", 'pretty_date')
 
     # Filtering widget

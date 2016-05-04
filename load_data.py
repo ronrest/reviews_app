@@ -3,7 +3,7 @@ import pandas as pd
 import datetime
 
 # What does this do?
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "reviews.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 
 # What does setup do?
 import django

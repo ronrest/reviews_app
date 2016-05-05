@@ -1,7 +1,7 @@
 from django.db import models
 import numpy as np
 from django.template.defaultfilters import truncatechars
-
+from django.contrib.auth.models import User
 
 # ##############################################################################
 #                                                                           ITEM
@@ -107,4 +107,22 @@ class Review(models.Model):
     # ==========================================================================
     def __unicode__(self):
         return str(self.rating) + " (" + self.author + ") " + self.item.name
+
+
+
+# ##############################################################################
+#                                                                  KmeansCluster
+# ##############################################################################
+class KmeansCluster(models.Model):
+    name = models.CharField(max_length=100)
+    users = models.ManyToManyField(User)
+
+    def get_members(self):
+        return {user[0] for user in self.users.all().values_list("username")}
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
 

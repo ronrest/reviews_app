@@ -31,9 +31,8 @@ def review_list(request):
                   context=context)
 
 
-
 # ==============================================================================
-#                                                                    REVIEW_LIST
+#                                                               USER_REVIEW_LIST
 # ==============================================================================
 def user_review_list(request, username=None):
     """

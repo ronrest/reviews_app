@@ -7,6 +7,7 @@ from registration.backends.default.views import RegistrationView
 from .models import Review, Item, KmeansCluster #, User
 from django.contrib.auth.models import User
 from .forms import ReviewForm
+from .suggestions import update_clusters
 
 import datetime
 
@@ -225,6 +226,10 @@ def add_review(request, item_id):
                             pub_date= datetime.datetime.now() # Auto generated
                             )
             review.save()
+
+            # Update the k-means clustering
+            update_clusters()
+
             # Always return an HttpResponseRedirect after successfully dealing
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.

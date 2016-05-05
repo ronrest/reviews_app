@@ -4,7 +4,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from registration.backends.default.views import RegistrationView
 
-from .models import Review, Item #, User
+from .models import Review, Item, KmeansCluster #, User
+from django.contrib.auth.models import User
 from .forms import ReviewForm
 
 import datetime
@@ -60,9 +61,50 @@ def user_recommendation_list(request):
     Show recomendations to the user
     Currently just shows the user a list of All the items.
     """
-    items = Item.objects.order_by("name")
-    context = {"items":items,
-               "page_title":"List of Items",
+    username = request.user.username
+    # --------------------------------------------------------------------------
+    #                                         Get Items Reviewed by current user
+    # --------------------------------------------------------------------------
+    user_reviews = Review.objects.filter(author=username).prefetch_related("item")
+    user_items_reviewed_ids = {review.item.id for review in user_reviews}
+    #user_items_not_reviewed = Item.objects.exclude(id__in=items_reviewed).order_by("name")
+
+    # --------------------------------------------------------------------------
+    #                                                          Get Similar Users
+    # --------------------------------------------------------------------------
+    # Get the cluster that the current user belongs to
+    cluster = User.objects.get(username=username).kmeanscluster_set.first()
+
+    # Get the other users from that cluster (then their names)
+    similar_users = cluster.users.exclude(username=username)
+    similar_users_names = {user.username for user in similar_users}
+
+    # --------------------------------------------------------------------------
+    #                                                         Create Suggestions
+    # --------------------------------------------------------------------------
+    # get the reviews by those other users
+    # (excluding ones already reviewed by current user)
+    other_users_reviews = Review.objects.filter(author__in=similar_users_names)\
+        .exclude(item__id__in=user_items_reviewed_ids)
+
+    # Get the items reviewed by the other users
+    other_users_items_reviewed = {review.item for review in other_users_reviews}
+
+    # Use these items reviewed by the other users as the suggestions, order them
+    # based on average rating of that item.
+    # TODO: consider ranking them by the ratings given by the similar users
+    #       instead of ratings from all users.
+    suggestions = sorted(other_users_items_reviewed,
+                         key=lambda x: x.average_rating(),
+                         reverse=True)
+
+    #[item.average_rating() for item in suggestions] # verify sorting worked
+
+    # --------------------------------------------------------------------------
+    #                                                            Render the Page
+    # --------------------------------------------------------------------------
+    context = {"items": suggestions,
+               "page_title":"List of Recomentations",
                }
     return render(request,
                   template_name= template_sub_dir + "recommendations.html",

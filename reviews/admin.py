@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Review, Item
+from .models import Review, Item, KmeansCluster
 
 
 # ==============================================================================
@@ -60,11 +60,26 @@ class ReviewAdmin(admin.ModelAdmin):
     ordering = ("-pub_date", "-rating", "item")
 
 
+# ==============================================================================
+#                                                                  CLUSTER ADMIN
+# ==============================================================================
+class KmeansClusterAdmin(admin.ModelAdmin):
+    """
+    Customise the admin page for the KmeansCluster Model.
+    """
+    list_display = ('name', 'get_members')
+    list_filter = ("name",)
+    search_fields = ("name",)
+    ordering = ("name",)
+
+
 
 # ==============================================================================
 #                                                                REGISTER MODELS
 # ==============================================================================
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Item, ItemAdmin)
+admin.site.register(KmeansCluster, KmeansClusterAdmin)
+
 
 
